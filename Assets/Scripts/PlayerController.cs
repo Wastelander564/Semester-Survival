@@ -2,46 +2,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 10f;
 
-    [SerializeField] private float moveSpeed = 1f;
-
-    private PlayerControls playerControls;
-    private Vector2 movement;
     private Rigidbody2D rigidbody;
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void OnEnable()
+    private void Update()
     {
-        playerControls.Enable();
-    }
+        rigidbody.linearVelocity = new Vector2(
+            Input.GetAxis("Horizontal") * moveSpeed,
+            rigidbody.linearVelocityY
+        );
 
-    private void OnDisable()
-    {
-        playerControls.Disable();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        PlayerInput();
-    }
-    private void FixedUpdate()
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-        Move();
+            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocityX, jumpForce);
         }
-    private void PlayerInput ()
-    {
-        movement = playerControls.Movement.Move.ReadValue<Vector2>();
     }
-
-    private void Move()
-    {
-        rigidbody.MovePosition(rigidbody.position + movement * (moveSpeed * Time.fixedDeltaTime));
-    }
-    
 }
