@@ -2,30 +2,26 @@ using UnityEngine;
 
 public class AnswerScript : MonoBehaviour
 {
-    public bool isCorrect = false;
+    public bool isCorrect;
+
     public QuizManager quizManager;
-    public GameObject questionaire;
 
     public void Answer()
     {
-        if (isCorrect)
-        {
-            Debug.Log("Correct Answer");
+        Debug.Log("ANSWER CLICKED: " + gameObject.name);
 
-            if (quizManager != null)
-            {
-                quizManager.correct();
-            }
-
-            if (questionaire != null)
-            {
-                questionaire.SetActive(false);
-            }
-        }
-        else
+        if (quizManager == null)
         {
-            Debug.Log("Wrong Answer");
+            Debug.LogError(
+                "QuizManager is not assigned to " + gameObject.name
+            );
+
+            return;
         }
+
+        quizManager.AnswerSelected(
+            isCorrect,
+            gameObject
+        );
     }
 }
-
