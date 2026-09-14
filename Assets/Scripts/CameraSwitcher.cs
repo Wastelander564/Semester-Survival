@@ -9,11 +9,12 @@ public class CameraSwitcher : MonoBehaviour
 
     void Start()
     {
-        // Find the player's camera
-        GameObject player = GameObject.Find("Player");
+        // Find the player using the Player tag
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         if (player != null)
         {
+            // Find the player's camera
             cameraPlayer = player.GetComponentInChildren<Camera>(true);
 
             // Find all BoxCollider2D components that are children of the player's camera
@@ -92,4 +93,3 @@ public class CameraSwitcher : MonoBehaviour
         }
     }
 }
-

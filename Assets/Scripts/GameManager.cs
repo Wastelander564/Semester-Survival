@@ -1,20 +1,47 @@
 using UnityEngine;
 using TMPro;
 
-public class GameManger : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    private int score = 0;
-    private int week = 1;
-    [SerializeField] private TMP_Text scoreText;
-    [SerializeField] private TMP_Text weekText;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int playerScore = 0;
+    public int Week = 1;
 
-    // Update is called once per frame
-    void Update()
+    public TMP_Text scoreText;
+    public TMP_Text weekText;
+
+    void Start()
     {
-        if(week = 17 && score >= 100)
+        UpdateScoreText();
+        UpdateWeekText();
+    }
+
+    public void UpdateScore(int scoreToAdd)
+    {
+        playerScore += scoreToAdd;
+
+        UpdateScoreText();
+    }
+
+    public void UpdateWeek(int weekToAdd)
+    {
+        Week += weekToAdd;
+
+        UpdateWeekText();
+    }
+
+    private void UpdateScoreText()
+    {
+        if (scoreText != null)
         {
-            Debug.Log("You Win!");
+            scoreText.text = "Score: " + playerScore;
+        }
+    }
+
+    private void UpdateWeekText()
+    {
+        if (weekText != null)
+        {
+            weekText.text = "Week: " + Week;
         }
     }
 }
