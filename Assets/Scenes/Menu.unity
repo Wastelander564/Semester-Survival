@@ -1237,7 +1237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c365ab0e7c7a28428600482c9ce9ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
-  gameSceneName: Justin's Scene
+  gameSceneName: Nana's scene
 --- !u!4 &1880587307
 Transform:
   m_ObjectHideFlags: 0
