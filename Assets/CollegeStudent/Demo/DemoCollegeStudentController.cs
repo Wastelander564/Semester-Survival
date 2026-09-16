@@ -11,35 +11,37 @@ namespace ClearSky
         public float jumpPower = 20f; //Set Gravity Scale in Rigidbody2D Component to 5
 
         private Rigidbody2D rb;
-        private Animator anim;
+        [SerializeField] private Animator anim;
         Vector3 movement;
         private int direction = 1;
         bool isJumping = false;
         private bool alive = true;
         private bool isKickboard = false;
+		private bool tutorialLocked = true;
 
 
         // Start is called before the first frame update
+		
         void Start()
-        {
-            rb = GetComponent<Rigidbody2D>();
-            anim = GetComponent<Animator>();
-        }
+	{
+		rb = GetComponent<Rigidbody2D>();
+		anim = GetComponentInChildren<Animator>();
+	}
 
-        private void Update()
-        {
-            Restart();
-            if (alive)
-            {
-                Hurt();
-                Die();
-                Attack();
-                Jump();
-                KickBoard();
-                Run();
+       private void Update()
+{
+    Restart();
 
-            }
-        }
+    if (alive && !tutorialLocked)
+    {
+        Hurt();
+        Die();
+        Attack();
+        Jump();
+        KickBoard();
+        Run();
+    }
+}
         private void OnCollisionEnter2D(Collision2D collision)
 {
     anim.SetBool("isJump", false);
@@ -168,6 +170,10 @@ namespace ClearSky
                 alive = true;
             }
         }
+		public void SetTutorialLocked(bool locked)
+{
+    tutorialLocked = locked;
+}
     }
 
 }

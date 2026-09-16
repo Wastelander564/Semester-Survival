@@ -10,6 +10,7 @@ public class teacherScript : MonoBehaviour, IInteractable
         Debug.Log("TEACHER INTERACTED!");
 
         questionair.SetActive(true);
+
         Debug.Log("Questionnaire activated.");
 
         StartCoroutine(WaitForQuestionnaire());
@@ -17,7 +18,7 @@ public class teacherScript : MonoBehaviour, IInteractable
 
     private IEnumerator WaitForQuestionnaire()
     {
-        // Wait until the questionnaire is deactivated
+        // Wait until the questionnaire is closed
         yield return new WaitUntil(() => !questionair.activeSelf);
 
         Debug.Log("Questionnaire closed. Destroying teacher.");
