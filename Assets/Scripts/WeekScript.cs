@@ -1,21 +1,21 @@
-
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WeekScript : MonoBehaviour
 {
     public GameManager gameManager;
 
-    private bool weekUpdated = false;
+    private bool transitionStarted = false;
 
     void Update()
     {
         teacherScript[] teachers = FindObjectsByType<teacherScript>(FindObjectsSortMode.None);
 
-        if (teachers.Length == 0 && !weekUpdated)
+        if (teachers.Length == 0 && !transitionStarted)
         {
-            weekUpdated = true;
-            gameManager.UpdateWeek(1);
+            transitionStarted = true;
+
+            SceneManager.LoadScene("WeekUpdateScene");
         }
     }
 }
-

@@ -11,11 +11,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Nana's scene.unity
     guid: 14e34d569959e2149b2de66c8679238e
-  - enabled: 1
-    path: Assets/Scenes/Justin's Scene.unity
-    guid: da652f800c82057498ae8ee27dcd31d6
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Justin's Scene.unity
+    guid: da652f800c82057498ae8ee27dcd31d6
+  - enabled: 1
+    path: Assets/Scenes/WeekUpdateScene.unity
+    guid: 70931095e1cc08f45a03ea8324316b6f
+  - enabled: 1
+    path: Assets/Scenes/Week 2.unity
+    guid: df0d68c8e02999d4ab5776d05df2a351
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
