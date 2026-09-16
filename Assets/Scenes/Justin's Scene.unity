@@ -234,6 +234,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorScript
   destination: {fileID: 1828402489}
+  linkedDoor: {fileID: 1828402491}
+  classroom: {fileID: 630986865}
+  teacher: {fileID: 1719880856}
+  glowingParticles: {fileID: 899064383}
 --- !u!212 &21643070
 SpriteRenderer:
   serializedVersion: 3
@@ -4509,6 +4513,10 @@ PrefabInstance:
       propertyPath: m_LayerOverridePriority
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8640346475962747023, guid: 82139f5fb84f14f498a9746d48c45adc, type: 3}
+      propertyPath: jumpPower
+      value: 17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -6097,6 +6105,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorScript
   destination: {fileID: 21643071}
+  linkedDoor: {fileID: 21643069}
+  classroom: {fileID: 630986865}
+  teacher: {fileID: 1719880856}
+  glowingParticles: {fileID: 1837945278}
 --- !u!212 &1828402492
 SpriteRenderer:
   serializedVersion: 3
