@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class timerScript : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class timerScript : MonoBehaviour
 
     private RectTransform timerRect;
     private float startingWidth;
+    private bool timerFinished = false;
 
     void Start()
     {
@@ -15,11 +17,11 @@ public class timerScript : MonoBehaviour
         {
             timer.SetActive(true);
 
-            // Get the RectTransform of the RawImage
+            // Get the RectTransform of the timer
             timerRect = timer.GetComponent<RectTransform>();
 
             // Remember its original width
-            startingWidth = 300;
+            startingWidth = 300f;
         }
     }
 
@@ -39,8 +41,10 @@ public class timerScript : MonoBehaviour
                 startingWidth * percentage
             );
         }
-        else
+        else if (!timerFinished)
         {
+            timerFinished = true;
+
             // Make sure it reaches exactly 0
             timeRemaining = 0;
 
@@ -48,6 +52,9 @@ public class timerScript : MonoBehaviour
                 RectTransform.Axis.Horizontal,
                 0
             );
+
+            // Go to the week transition
+            SceneManager.LoadScene("WeekUpdateScene");
         }
     }
 }

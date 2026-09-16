@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     {
         Week += weekToAdd;
         UpdateWeekText();
-        CheckWinCondition();
     }
 
     private void UpdateScoreText()
@@ -48,19 +47,5 @@ public class GameManager : MonoBehaviour
         {
             weekText.text = "Week: " + Week;
         }
-    }
-    private void CheckWinCondition() 
-    { 
-        if (Week == 17) 
-        { 
-            if (playerScore >= winScore) 
-            { 
-                Debug.Log("YOU WIN!"); 
-            } 
-            else 
-            { 
-                Debug.Log("YOU LOSE!"); 
-            } 
-        } 
     }
 }
