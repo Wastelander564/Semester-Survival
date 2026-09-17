@@ -17,7 +17,7 @@ namespace ClearSky
         bool isJumping = false;
         private bool alive = true;
         private bool isKickboard = false;
-		private bool tutorialLocked = true;
+		private bool tutorialLocked = false;
 
 
         // Start is called before the first frame update

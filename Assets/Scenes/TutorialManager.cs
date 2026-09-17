@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using ClearSky;
 
 public class TutorialManager : MonoBehaviour
@@ -13,28 +14,28 @@ public class TutorialManager : MonoBehaviour
     public GameObject yesButton;
     public GameObject noButton;
 
-public ClearSky.DemoCollegeStudentController playerController;
-	
-	void UnlockPlayer()
-{
-    if (playerController != null)
-    {
-        // Enable the controller
-        playerController.enabled = true;
-
-        // Unlock movement
-        DemoCollegeStudentController controller =
-            playerController as DemoCollegeStudentController;
-
-        if (controller != null)
-{
-    controller.SetTutorialLocked(false);
-    Debug.Log("PLAYER UNLOCKED");
-}
-    }
-}
+    public ClearSky.DemoCollegeStudentController playerController;
 
     private int currentStep = 0;
+
+    void UnlockPlayer()
+    {
+        if (playerController != null)
+        {
+            // Enable the controller
+            playerController.enabled = true;
+
+            // Unlock movement
+            DemoCollegeStudentController controller =
+                playerController as DemoCollegeStudentController;
+
+            if (controller != null)
+            {
+                controller.SetTutorialLocked(false);
+                Debug.Log("PLAYER UNLOCKED");
+            }
+        }
+    }
 
     private void Start()
     {
@@ -79,28 +80,28 @@ public ClearSky.DemoCollegeStudentController playerController;
                 break;
 
             case 2:
-                // UNLOCK PLAYER MOVEMENT
-                 UnlockPlayer();
+                // Unlock player movement
+                UnlockPlayer();
 
                 instructionText.text =
-                    "Classrooms zijn herkenbaar aan hun speciale uiterlijk.\n\n" +
-                    "Loop naar een classroom en ga naar binnen om de opdracht te starten.";
+                    "Classrooms zijn herkenbaar aan hun de gouden particles.\n\n" +
+                    "In die classrooms kan je interacten met een docent voor een quizvraag.";
 
                 nextButton.SetActive(true);
                 break;
 
             case 3:
                 instructionText.text =
-                    "Tijdens het spelen verdien je punten.\n\n" +
-                    "Houd ook de timer in de gaten!";
+                    "Heb je de vraag goed, dan krijg je studiepunten.\n\n" +
+                    "Houd ook de groene timer rechts onderin in de gaten!";
 
                 nextButton.SetActive(true);
                 break;
 
             case 4:
                 instructionText.text =
-                    "Let goed op buffs en debuffs.\n\n" +
-                    "Buffs geven je voordelen, terwijl debuffs je kunnen tegenwerken.";
+                    "Je kan ook buffs en debuffs krijgen.\n\n" +
+                    "Buffs (energy drankjes) geven je voordelen, terwijl debuffs (afleidingen) je tegenwerken.";
 
                 nextButton.SetActive(true);
                 break;
@@ -139,6 +140,8 @@ public ClearSky.DemoCollegeStudentController playerController;
 
     void FinishTutorial()
     {
+        Debug.Log("FINISHTUTORIAL IS AANGEROEPEN!");
+
         // Hide the entire tutorial panel
         if (tutorialPanel != null)
         {
@@ -150,7 +153,9 @@ public ClearSky.DemoCollegeStudentController playerController;
         yesButton.SetActive(false);
         noButton.SetActive(false);
 
-        // Make sure player movement is enabled
-        UnlockPlayer();
+        // Load Justin's Scene
+        Debug.Log("Loading Justin's Scene...");
+
+        SceneManager.LoadScene("Justin's Scene");
     }
 }
