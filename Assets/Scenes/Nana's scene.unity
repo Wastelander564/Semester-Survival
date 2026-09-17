@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   pausePanel: {fileID: 1868937296}
   levelCompletePanel: {fileID: 1692037785}
-  playerController: {fileID: 770999712}
+  playerController: {fileID: 1399609415}
   menuSceneName: Menu
 --- !u!4 &852577359
 Transform:
@@ -2548,6 +2548,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f876853281a1b9d42be708f9b0226537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interaction
+--- !u!114 &1399609415 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8640346475962747023, guid: 82139f5fb84f14f498a9746d48c45adc, type: 3}
+  m_PrefabInstance: {fileID: 1399609411}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399609412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1659d8f40431048a82ff8d468a2cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1530967933
 PrefabInstance:
   m_ObjectHideFlags: 0
