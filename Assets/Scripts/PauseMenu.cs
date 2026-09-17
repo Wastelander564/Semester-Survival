@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ClearSky;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject levelCompletePanel;
-    [SerializeField] private PlayerController playerController;
+    [SerializeField] private DemoCollegeStudentController playerController;
     [SerializeField] private string menuSceneName = "Menu";
 
     private bool isPaused = false;
