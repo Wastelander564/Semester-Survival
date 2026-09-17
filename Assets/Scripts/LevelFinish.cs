@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ClearSky;
 
 public class LevelFinish : MonoBehaviour
 {
@@ -14,10 +15,18 @@ public class LevelFinish : MonoBehaviour
         {
             Debug.Log("Level complete!");
 
-            PlayerController controller = other.GetComponent<PlayerController>();
+            // Stop the player so they can't walk away
+            DemoCollegeStudentController controller = other.GetComponent<DemoCollegeStudentController>();
             if (controller != null)
             {
                 controller.enabled = false;
+            }
+
+            // Stop the run animation, otherwise the student keeps running in place
+            Animator animator = other.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetBool("isRun", false);
             }
             other.attachedRigidbody.linearVelocity = Vector2.zero;
 

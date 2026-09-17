@@ -17,7 +17,8 @@ namespace ClearSky
         bool isJumping = false;
         private bool alive = true;
         private bool isKickboard = false;
-		private bool tutorialLocked = false;
+        private ContactPoint2D[] contacts = new ContactPoint2D[10];
+        private bool tutorialLocked = false;
 
 
         // Start is called before the first frame update
@@ -28,24 +29,29 @@ namespace ClearSky
 		anim = GetComponentInChildren<Animator>();
 	}
 
-       private void Update()
-{
-    Restart();
-
-    if (alive && !tutorialLocked)
-    {
-        Hurt();
-        Die();
-        Attack();
-        Jump();
-        KickBoard();
-        Run();
-    }
-}
+        private void Update()
+        {
+            // Demo keys (1 = attack, 2 = hurt, 3 = die, 4 = kickboard, 0 = revive) are switched off for the game.
+            // The methods still exist, so the team can use them later.
+            // Restart();
+            if (alive)
+            {
+                // Hurt();
+                // Die();
+                // Attack();
+                Jump();
+                // KickBoard();
+                Run();
+            }
+        }
         private void OnCollisionEnter2D(Collision2D collision)
-{
-    anim.SetBool("isJump", false);
-}
+        {
+            // Only count as "landed" when we touch something below us, not a wall
+            if (IsGrounded())
+            {
+                anim.SetBool("isJump", false);
+            }
+        }
         void KickBoard()
         {
             if (Input.GetKeyDown(KeyCode.Alpha4) && isKickboard)
@@ -115,7 +121,7 @@ namespace ClearSky
         void Jump()
         {
             if ((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0)
-            && !anim.GetBool("isJump"))
+            && !anim.GetBool("isJump") && IsGrounded())
             {
                 isJumping = true;
                 anim.SetBool("isJump", true);
@@ -131,6 +137,22 @@ namespace ClearSky
             rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
 
             isJumping = false;
+        }
+
+        private bool IsGrounded()
+        {
+            int contactCount = rb.GetContacts(contacts);
+
+            for (int i = 0; i < contactCount; i++)
+            {
+    
+                if (contacts[i].normal.y > 0.5f)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
         void Attack()
         {
