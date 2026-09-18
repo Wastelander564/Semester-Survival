@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = "Score: " + playerScore;
+            scoreText.text = "StudiePunten: " + playerScore;
         }
     }
 

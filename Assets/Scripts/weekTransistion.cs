@@ -94,7 +94,7 @@ public class WeekTransition : MonoBehaviour
         }
 
         // Update score text
-        ScoreText.text = "Score: " + gameManager.playerScore;
+        ScoreText.text = "StudiePunten: " + gameManager.playerScore;
 
         // Show whether the player has enough study points
         if (gameManager.playerScore >= gameManager.winScore)

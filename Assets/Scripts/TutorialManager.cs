@@ -193,6 +193,6 @@ public class TutorialManager : MonoBehaviour
         // Load Justin's Scene
         Debug.Log("Loading Justin's Scene...");
 
-        SceneManager.LoadScene("Justin's Scene");
+        SceneManager.LoadScene("Week 1");
     }
 }
