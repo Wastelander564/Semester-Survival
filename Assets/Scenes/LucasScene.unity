@@ -424,7 +424,8 @@ Transform:
   m_LocalPosition: {x: 4.86, y: -2.56, z: 0}
   m_LocalScale: {x: 6, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 677124528}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &92710690
@@ -1132,12 +1133,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677124526}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.9300003, y: -0.62, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.011666696, y: 3.8799999, z: 0}
+  m_LocalScale: {x: 0.20000002, y: 2.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 70727157}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &766395044
 GameObject:
@@ -1181,6 +1182,10 @@ MonoBehaviour:
   - {fileID: 1378909753}
   currentQuestion: 1
   QuestionTxt: {fileID: 1373965860}
+  questionair: {fileID: 0}
+  gameManager: {fileID: 0}
+  CorrectScore: 100
+  NegativePoints: 25
 --- !u!4 &766395046
 Transform:
   m_ObjectHideFlags: 0
@@ -2145,7 +2150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnswerScript
   isCorrect: 0
   quizManager: {fileID: 766395045}
-  questionaire: {fileID: 92710690}
 --- !u!1 &1651557240
 GameObject:
   m_ObjectHideFlags: 0
@@ -2279,7 +2283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnswerScript
   isCorrect: 0
   quizManager: {fileID: 766395045}
-  questionaire: {fileID: 92710690}
 --- !u!1 &1845798913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2413,7 +2416,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnswerScript
   isCorrect: 0
   quizManager: {fileID: 766395045}
-  questionaire: {fileID: 92710690}
 --- !u!1 &2065741149
 GameObject:
   m_ObjectHideFlags: 0
@@ -2602,6 +2604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::timerScript
   timeRemaining: 60
+  startingTime: 60
   timer: {fileID: 2087398830}
 --- !u!114 &2087398833
 MonoBehaviour:
@@ -2648,7 +2651,6 @@ SceneRoots:
   - {fileID: 1282331837}
   - {fileID: 2065741153}
   - {fileID: 572276254}
-  - {fileID: 677124528}
   - {fileID: 409568752}
   - {fileID: 8415236}
   - {fileID: 766395046}

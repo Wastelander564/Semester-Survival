@@ -5,14 +5,16 @@ TagManager:
   serializedVersion: 3
   tags:
   - Interactable
+  - Obstacle
+  - cameraCollider
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Obstacles
   - Water
   - UI
-  - 
+  - Camera
   - 
   - 
   - 

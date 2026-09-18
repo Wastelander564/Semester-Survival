@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 107119a546556e544948e3186323c808
+guid: bd5cf8c07c4556e46bc251a8bf0da6a5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 501496990215679151
-    second: 3b139e8b-b97b-4e27-8665-b1b7f94560ec-removebg-preview_0
+      213: 9063378902916230651
+    second: Slippery_semester_survival_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -99,7 +99,20 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -115,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 3b139e8b-b97b-4e27-8665-b1b7f94560ec-removebg-preview_0
+      name: Slippery_semester_survival_0
       rect:
         serializedVersion: 2
-        x: 18
+        x: 0
         y: 0
-        width: 582
-        height: 390
+        width: 173
+        height: 296
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: facabb50bdca5f600800000000000000
-      internalID: 501496990215679151
+      spriteID: bfd6715a71797cd70800000000000000
+      internalID: 9063378902916230651
       vertices: []
       indices: 
       edges: []
@@ -150,7 +163,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      3b139e8b-b97b-4e27-8665-b1b7f94560ec-removebg-preview_0: 501496990215679151
+      Slippery_semester_survival_0: 9063378902916230651
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

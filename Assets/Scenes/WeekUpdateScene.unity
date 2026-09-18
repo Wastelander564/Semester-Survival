@@ -152,9 +152,9 @@ MonoBehaviour:
   weekText: {fileID: 1846771953}
   ScoreText: {fileID: 521709065}
   WinText: {fileID: 1947115500}
+  transitionPanel: {fileID: 0}
+  GamePlayUI: {fileID: 0}
   canvasGroup: {fileID: 1433034749}
-  score: 0
-  winScore: 0
   fadeDuration: 0.5
   waitTime: 1
 --- !u!4 &195943644
