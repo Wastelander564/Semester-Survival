@@ -710,6 +710,7 @@ GameObject:
   - component: {fileID: 390919496}
   - component: {fileID: 390919495}
   - component: {fileID: 390919498}
+  - component: {fileID: 390919499}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -785,11 +786,11 @@ Transform:
   m_GameObject: {fileID: 390919494}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.4, z: -10}
+  m_LocalPosition: {x: -26.25, y: -0.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1399609413}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &390919498
 MonoBehaviour:
@@ -835,6 +836,22 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &390919499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390919494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b323825c6bd8d434491447557b1c1655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
+  target: {fileID: 1399609413}
+  smoothTime: 0.05
+  minX: -30
+  maxX: 74
 --- !u!1 &487975010
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,10 +2534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8095947265537644598, guid: 82139f5fb84f14f498a9746d48c45adc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 390919497}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8095947265537644599, guid: 82139f5fb84f14f498a9746d48c45adc, type: 3}
       insertIndex: -1
@@ -4852,6 +4866,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 390919497}
   - {fileID: 1384899500}
   - {fileID: 1399609411}
   - {fileID: 2020689984}
