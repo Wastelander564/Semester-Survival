@@ -8258,7 +8258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerScore: 0
   Week: 1
-  winScore: 725
+  winScore: 500
   endWeek: 5
   scoreText: {fileID: 2027093567}
   weekText: {fileID: 986515891}
