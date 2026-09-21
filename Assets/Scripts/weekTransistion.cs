@@ -11,6 +11,9 @@ public class WeekTransition : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI WinText;
 
+    public GameObject transitionPanel;
+    public GameObject GamePlayUI;
+
     public CanvasGroup canvasGroup;
 
     public float fadeDuration = 1f;
@@ -18,19 +21,53 @@ public class WeekTransition : MonoBehaviour
 
     private void Start()
     {
-        // Find the GameManager if it wasn't assigned manually
-        if (gameManager == null)
+        FindPersistentReferences();
+
+        if (GamePlayUI != null)
         {
-            gameManager = FindFirstObjectByType<GameManager>();
+            GamePlayUI.SetActive(false);
         }
 
-        if (gameManager == null)
+        if (gameManager == null || transitionPanel == null || canvasGroup == null)
         {
-            Debug.LogError("GameManager could not be found!");
+            Debug.LogError("WeekTransition could not find all required persistent references.");
             return;
         }
 
         StartCoroutine(PlayWeekTransition());
+    }
+
+    private void FindPersistentReferences()
+    {
+        if (gameManager == null)
+        {
+            gameManager = FindFirstObjectByType<GameManager>(FindObjectsInactive.Include);
+        }
+
+        if (GamePlayUI == null && GameplayUI.Instance != null)
+        {
+            GamePlayUI = GameplayUI.Instance.gameObject;
+        }
+
+        if (transitionPanel == null)
+        {
+            transitionPanel = GameObject.Find("transitionPanel");
+
+            if (transitionPanel == null)
+            {
+                transitionPanel = GameObject.Find("TransitionPanel");
+            }
+        }
+
+        if (canvasGroup == null)
+        {
+            canvasGroup = FindFirstObjectByType<CanvasGroup>(FindObjectsInactive.Include);
+        }
+
+        if (transitionPanel == null && canvasGroup != null)
+        {
+            transitionPanel = canvasGroup.gameObject;
+        }
     }
 
     private IEnumerator PlayWeekTransition()
@@ -50,9 +87,14 @@ public class WeekTransition : MonoBehaviour
 
         // Update week text
         weekText.text = "Week " + gameManager.Week;
+        if (gameManager.Week == gameManager.endWeek)
+        {
+            weekText.text = "Week " +gameManager.Week + " (Final Week)";
+            weekText.fontSize = 225; // Increase font size for emphasis
+        }
 
         // Update score text
-        ScoreText.text = "Score: " + gameManager.playerScore;
+        ScoreText.text = "StudiePunten: " + gameManager.playerScore;
 
         // Show whether the player has enough study points
         if (gameManager.playerScore >= gameManager.winScore)
@@ -69,8 +111,9 @@ public class WeekTransition : MonoBehaviour
         yield return StartCoroutine(Fade(1f, 0f));
 
         // Week 17 is finished, go to EndScreen
-        if (gameManager.Week > 17)
+        if (gameManager.Week > gameManager.endWeek)
         {
+            weekText.text = "";
             SceneManager.LoadScene("EndScreen");
         }
         else

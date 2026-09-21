@@ -16,7 +16,40 @@ public class DoorScript : MonoBehaviour, IInteractable
     // Glowing particles
     public GameObject glowingParticles;
 
+    public GameObject E_key;
+
     private bool completed = false;
+
+    private void Start()
+    {
+        SetEKeyVisible(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player entered door trigger area.");
+            SetEKeyVisible(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            SetEKeyVisible(false);
+        }
+    }
+
+    private void SetEKeyVisible(bool visible)
+    {
+        if (E_key != null)
+        {
+            E_key.SetActive(visible);
+        }
+    }
+
 
     public void Interact()
     {

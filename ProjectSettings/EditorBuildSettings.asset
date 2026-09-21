@@ -23,14 +23,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndScreen.unity
     guid: 7377be5bc70920d48ae548e28b970899
-  - enabled: 0
-    path: Assets/Scenes/LucasScene.unity
-    guid: 6581d8e9fbcdd1842b172c94ed3b8208
-  - enabled: 0
-    path: Assets/Scenes/Main Menu.unity
-    guid: e073cd01c7ec16448ae66a90f20cc5b5
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/LevelFlow/Week 2.unity
+    guid: 3cc25a466be1a2842afe5a574f90e7a5
+  - enabled: 1
+    path: Assets/Scenes/LevelFlow/Week 1.unity
+    guid: cf55c1de6ece6654790db3b015705309
+  - enabled: 1
+    path: Assets/Scenes/LevelFlow/Week 3.unity
+    guid: db99cf3a1b2003a4ba6a2c08ce2de206
+  - enabled: 1
+    path: Assets/Scenes/LevelFlow/Week 4.unity
+    guid: a05504df22da40c41b0d9e284c0dfd48
+  - enabled: 1
+    path: Assets/Scenes/LevelFlow/Week 5.unity
+    guid: e35ba3953e2026c4aa8476376f385881
   m_configObjects:
+    com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

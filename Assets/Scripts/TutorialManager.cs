@@ -9,12 +9,15 @@ public class TutorialManager : MonoBehaviour
     public TMP_Text instructionText;
 
     public GameObject tutorialPanel;
-
     public GameObject nextButton;
     public GameObject yesButton;
     public GameObject noButton;
-
     public ClearSky.DemoCollegeStudentController playerController;
+	public GameObject classroomParticles;
+	public GameObject tutorialTimer;
+	public GameObject scoreText;
+	public GameObject circle;
+	public GameObject phoneSemesterSurvival;
 
     private int currentStep = 0;
 
@@ -39,6 +42,12 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
+		classroomParticles.SetActive(false);
+		tutorialTimer.SetActive(false);
+		scoreText.SetActive(false);
+		circle.SetActive(false);
+		phoneSemesterSurvival.SetActive(false);
+		
         // Disable player movement while the tutorial intro is active
         if (playerController != null)
         {
@@ -80,25 +89,47 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 2:
-                // Unlock player movement
-                UnlockPlayer();
+			//enable particles
+			classroomParticles.SetActive(true);
 
                 instructionText.text =
-                    "Classrooms zijn herkenbaar aan hun de gouden particles.\n\n" +
-                    "In die classrooms kan je interacten met een docent voor een quizvraag.";
+                    "Classrooms zijn herkenbaar aan hun gouden particles. Om erin te gaan, druk op E.\n\n" +
+                    "In die classrooms kan je interacten (E) met een docent voor een quizvraag.";
 
                 nextButton.SetActive(true);
                 break;
 
             case 3:
+			//disable particles
+			classroomParticles.SetActive(false);
+			
+			//show timer
+			tutorialTimer.SetActive(true);
+	
+			//show score
+			scoreText.SetActive(true);
+			
                 instructionText.text =
                     "Heb je de vraag goed, dan krijg je studiepunten.\n\n" +
-                    "Houd ook de groene timer rechts onderin in de gaten!";
+                    "Rechts onderin loopt een groene tijdbalk achteruit, laat die niet leeglopen!";
 
                 nextButton.SetActive(true);
                 break;
 
             case 4:
+			//hide timer
+			tutorialTimer.SetActive(false);
+			
+			//hide score
+			scoreText.SetActive(false);
+			
+			//show buff
+			circle.SetActive(true);
+			
+			//show debuff
+			phoneSemesterSurvival.SetActive(true);
+			
+			
                 instructionText.text =
                     "Je kan ook buffs en debuffs krijgen.\n\n" +
                     "Buffs (energy drankjes) geven je voordelen, terwijl debuffs (afleidingen) je tegenwerken.";
@@ -107,6 +138,12 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 5:
+			//hide buff
+			circle.SetActive(false);
+			
+			//hide debuff
+			phoneSemesterSurvival.SetActive(false);
+			
                 instructionText.text =
                     "Veel succes en vooral veel plezier met het spel!";
 
@@ -156,6 +193,6 @@ public class TutorialManager : MonoBehaviour
         // Load Justin's Scene
         Debug.Log("Loading Justin's Scene...");
 
-        SceneManager.LoadScene("Justin's Scene");
+        SceneManager.LoadScene("Week 1");
     }
 }
