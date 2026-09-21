@@ -78,6 +78,8 @@ public class WeekTransition : MonoBehaviour
         // Show current score
         ScoreText.text = "Score: " + gameManager.playerScore;
 
+        WinText.text = "Je hebt " + gameManager.winScore + " nodig om te winnen.";
+
         yield return StartCoroutine(Fade(0f, 1f));
 
         yield return new WaitForSeconds(waitTime);

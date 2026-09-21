@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System.Collections;
 using ClearSky;
@@ -10,61 +9,142 @@ public class teacherScript : MonoBehaviour, IInteractable
     private DemoCollegeStudentController playerController;
     private bool playerLeftTrigger = false;
 
+    // This teacher's own E key
+    private GameObject E_key;
+
+    private void Awake()
+    {
+        // Find ONLY this teacher's own E key
+        E_key = FindEKey();
+
+        // Make sure it is disabled immediately
+
+    }
+
+    private void OnEnable()
+    {
+        // Important when a new week/scene loads
+        // or this teacher gets enabled again.
+        if (E_key == null)
+        {
+            E_key = FindEKey();
+        }
+
+
+    }
+
     private void Start()
     {
+        // Make absolutely sure it is hidden when the scene starts
+
+
         FindQuestionnaire();
+    }
+
+    private GameObject FindEKey()
+    {
+        // Search ONLY inside this teacher
+        Transform[] children =
+            GetComponentsInChildren<Transform>(true);
+
+        foreach (Transform child in children)
+        {
+            if (child.name == "E_key_semester_survival_0")
+            {
+                Debug.Log(
+                    "E_key found for teacher: " +
+                    gameObject.name
+                );
+
+                return child.gameObject;
+            }
+        }
+
+        Debug.LogWarning(
+            "No child named 'E_key_semester_survival_0' found on teacher: " +
+            gameObject.name
+        );
+
+        return null;
     }
 
     private void FindQuestionnaire()
     {
-        // Find the persistent questionnaire through its Instance
         if (QuestionnaireUI.Instance != null)
         {
             questionair = QuestionnaireUI.Instance.gameObject;
-            Debug.Log("Questionnaire found.");
+
+            Debug.Log(
+                "Questionnaire found for teacher: " +
+                gameObject.name
+            );
         }
         else
         {
-            Debug.LogError("QuestionnaireUI Instance could not be found.");
+            Debug.LogError(
+                "QuestionnaireUI Instance could not be found."
+            );
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log(
+                "Player entered teacher trigger: " +
+                gameObject.name
+            );
+
+            // Only this teacher's E key is shown
+            ShowEKey();
         }
     }
 
     public void Interact()
     {
-        Debug.Log("TEACHER INTERACTED!");
+        Debug.Log(
+            "TEACHER INTERACTED: " +
+            gameObject.name
+        );
 
-        // Make sure we have the questionnaire reference
+        // Hide E immediately when interacting
+
+
         if (questionair == null)
         {
             FindQuestionnaire();
         }
 
-        // Reset the trigger-leaving flag
         playerLeftTrigger = false;
 
-        // Find the player
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player =
+            GameObject.FindGameObjectWithTag("Player");
 
         if (player != null)
         {
-            playerController = player.GetComponent<DemoCollegeStudentController>();
+            playerController =
+                player.GetComponent<DemoCollegeStudentController>();
 
             if (playerController != null)
             {
-                // Stop the player from moving while answering
+                // Stop player movement while answering
                 playerController.enabled = false;
             }
             else
             {
-                Debug.LogError("Player is missing DemoCollegeStudentController!");
+                Debug.LogError(
+                    "Player is missing DemoCollegeStudentController!"
+                );
             }
         }
         else
         {
-            Debug.LogError("Player with tag 'Player' not found!");
+            Debug.LogError(
+                "Player with tag 'Player' not found!"
+            );
         }
 
-        // Open questionnaire
         if (questionair != null)
         {
             questionair.SetActive(true);
@@ -75,7 +155,9 @@ public class teacherScript : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.LogError("Questionnaire could not be found!");
+            Debug.LogError(
+                "Questionnaire could not be found!"
+            );
 
             EnablePlayerMovement();
         }
@@ -83,7 +165,6 @@ public class teacherScript : MonoBehaviour, IInteractable
 
     private IEnumerator WaitForQuestionnaire()
     {
-        // Make sure the questionnaire exists
         if (questionair == null)
         {
             FindQuestionnaire();
@@ -91,41 +172,60 @@ public class teacherScript : MonoBehaviour, IInteractable
 
         if (questionair == null)
         {
-            Debug.LogError("Questionnaire could not be found.");
+            Debug.LogError(
+                "Questionnaire could not be found."
+            );
 
             EnablePlayerMovement();
-
             yield break;
         }
 
-        // Wait until the questionnaire is closed
-        yield return new WaitUntil(() => !questionair.activeSelf);
+        // Wait until questionnaire closes
+        yield return new WaitUntil(
+            () => !questionair.activeSelf
+        );
 
-        // Enable player movement again
         EnablePlayerMovement();
 
-        // If the player left the trigger, don't destroy the teacher
+        // Player left before completing questionnaire
         if (playerLeftTrigger)
         {
-            Debug.Log("Questionnaire closed because player left. Teacher stays.");
+            Debug.Log(
+                "Questionnaire closed because player left. " +
+                "Teacher stays."
+            );
+
+
+
             yield break;
         }
 
-        // Questionnaire was completed normally
-        Debug.Log("Questionnaire completed. Destroying teacher.");
+        // Questionnaire completed normally
+        Debug.Log(
+            "Questionnaire completed. " +
+            "Destroying teacher."
+        );
+
+        // Disable E key BEFORE destroying teacher
+
 
         Destroy(gameObject);
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player left teacher trigger.");
+            Debug.Log(
+                "Player left teacher trigger: " +
+                gameObject.name
+            );
 
             playerLeftTrigger = true;
 
-            // Make sure we have the questionnaire reference
+            // Hide this teacher's E key
+
+
             if (questionair == null)
             {
                 FindQuestionnaire();
@@ -137,10 +237,19 @@ public class teacherScript : MonoBehaviour, IInteractable
                 questionair.SetActive(false);
             }
 
-            // Make sure the player can move again
             EnablePlayerMovement();
         }
     }
+
+    private void ShowEKey()
+    {
+        if (E_key != null)
+        {
+            E_key.SetActive(true);
+        }
+    }
+
+
 
     private void EnablePlayerMovement()
     {
@@ -153,11 +262,15 @@ public class teacherScript : MonoBehaviour, IInteractable
 
     private void OnDestroy()
     {
-        // Make sure the player isn't left unable to move
+        // Final safety check before the teacher disappears
+
+
+        // Make sure player can move again
         EnablePlayerMovement();
 
-        // Tell GameManager that this teacher has been destroyed
-        GameManager gameManager = FindObjectOfType<GameManager>();
+        // Tell GameManager that this teacher was destroyed
+        GameManager gameManager =
+            FindObjectOfType<GameManager>();
 
         if (gameManager != null)
         {
@@ -165,7 +278,9 @@ public class teacherScript : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.LogError("GameManager could not be found!");
+            Debug.LogError(
+                "GameManager could not be found!"
+            );
         }
     }
 }
