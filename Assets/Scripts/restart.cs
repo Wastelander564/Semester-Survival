@@ -32,6 +32,21 @@ public class restart : MonoBehaviour
             Debug.LogWarning("GameManager could not be found.");
         }
 
+        // Find the persistent timer
+        timerScript timer = FindObjectOfType<timerScript>();
+
+        if (timer != null)
+        {
+            // Reset timer back to its starting time
+            timer.ResetTimer();
+
+            Debug.Log("Timer reset.");
+        }
+        else
+        {
+            Debug.LogWarning("timerScript could not be found.");
+        }
+
         // Go back to the Menu
         SceneManager.LoadScene("Menu");
     }
