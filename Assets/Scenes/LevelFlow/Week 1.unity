@@ -7798,6 +7798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::teacherScript
   questionair: {fileID: 1519271887}
+  E_key: {fileID: 1048775503}
 --- !u!70 &1613287069
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

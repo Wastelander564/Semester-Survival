@@ -6805,6 +6805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::teacherScript
   questionair: {fileID: 0}
+  E_key: {fileID: 910062002}
 --- !u!70 &419538005
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -9963,6 +9964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::teacherScript
   questionair: {fileID: 0}
+  E_key: {fileID: 469974973}
 --- !u!70 &626083186
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -15241,6 +15243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::teacherScript
   questionair: {fileID: 0}
+  E_key: {fileID: 934971658}
 --- !u!70 &760006343
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -42860,6 +42863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::teacherScript
   questionair: {fileID: 0}
+  E_key: {fileID: 1238496167}
 --- !u!70 &2135101358
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

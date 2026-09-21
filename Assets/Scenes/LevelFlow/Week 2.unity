@@ -6321,6 +6321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::teacherScript
   questionair: {fileID: 0}
+  E_key: {fileID: 794954929}
 --- !u!70 &846615291
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -12261,6 +12262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::teacherScript
   questionair: {fileID: 0}
+  E_key: {fileID: 1133533135}
 --- !u!70 &1283790465
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
