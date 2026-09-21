@@ -8224,6 +8224,7 @@ GameObject:
   - component: {fileID: 1832969962}
   - component: {fileID: 1832969961}
   - component: {fileID: 1832969960}
+  - component: {fileID: 1832969963}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -8277,6 +8278,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1832969963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832969959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a7b4d0ca381614dbf7476caae128ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::cheats
 --- !u!1001 &1917966939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8601,8 +8614,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e3c3b3ec9747744b5709454b4925c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::timerScript
-  timeRemaining: 60
-  startingTime: 60
+  timeRemaining: 10
+  startingTime: 10
   timer: {fileID: 1974926696}
 --- !u!114 &1974926699
 MonoBehaviour:
