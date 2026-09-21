@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public int playerScore = 0;
     public int Week = 1;
-    public int winScore = 100000;
+    public int winScore = 500;
     public int endWeek = 5;
 
     public TMP_Text scoreText;
