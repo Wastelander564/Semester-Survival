@@ -9,9 +9,7 @@ public class QuizManager : MonoBehaviour
 {
     public List<QuestionsAndAnswers> QnA;
     public GameObject[] options;
-
     public int currentQuestion;
-
     public TMP_Text QuestionTxt;
 
     // Questionnaire GameObject
@@ -29,11 +27,17 @@ public class QuizManager : MonoBehaviour
     // Number of wrong answers on the current question
     private int wrongAnswers = 0;
 
+    // Prevents answering after the correct answer
     private bool answerSelected = false;
+
+    // Keeps track of which answer buttons have already been clicked
+    private HashSet<GameObject> clickedButtons =
+        new HashSet<GameObject>();
 
     // Keeps a copy of all original questions
     private List<QuestionsAndAnswers> originalQnA =
         new List<QuestionsAndAnswers>();
+
 
     private void Awake()
     {
@@ -42,23 +46,57 @@ public class QuizManager : MonoBehaviour
         // Make a copy of the original question pool
         if (QnA != null)
         {
-            originalQnA = new List<QuestionsAndAnswers>(QnA);
+            originalQnA =
+                new List<QuestionsAndAnswers>(QnA);
         }
     }
+
 
     private void Start()
     {
         GenerateQuestion();
     }
 
-    public void AnswerSelected(bool isCorrect, GameObject selectedButton)
+
+    public void AnswerSelected(
+        bool isCorrect,
+        GameObject selectedButton
+    )
     {
-        // Prevent clicking after the correct answer
-        if (answerSelected)
+        // Make sure a valid button was supplied
+        if (selectedButton == null)
+        {
+            Debug.LogError(
+                "AnswerSelected received a null button!"
+            );
+
             return;
+        }
+
+        // If the correct answer was already selected,
+        // do not allow any more answers
+        if (answerSelected)
+        {
+            return;
+        }
+
+        // Check if THIS specific button has already been clicked
+        if (clickedButtons.Contains(selectedButton))
+        {
+            Debug.Log(
+                "This answer has already been selected. " +
+                "No additional points will be lost."
+            );
+
+            return;
+        }
+
+        // Mark this button as clicked
+        clickedButtons.Add(selectedButton);
 
         // Get the Button component
-        Button button = selectedButton.GetComponent<Button>();
+        Button button =
+            selectedButton.GetComponent<Button>();
 
         if (button != null)
         {
@@ -74,7 +112,8 @@ public class QuizManager : MonoBehaviour
                 button.Select();
 
                 // Calculate the score based on wrong answers
-                int pointsToGive = CalculateCorrectScore();
+                int pointsToGive =
+                    CalculateCorrectScore();
 
                 // Give points through GameManager
                 if (gameManager != null)
@@ -83,12 +122,16 @@ public class QuizManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("GameManager is not assigned!");
+                    Debug.LogError(
+                        "GameManager is not assigned!"
+                    );
                 }
 
                 Debug.Log(
-                    "Correct answer! +" + pointsToGive +
-                    " points. Wrong answers: " + wrongAnswers
+                    "Correct answer! +" +
+                    pointsToGive +
+                    " points. Wrong answers: " +
+                    wrongAnswers
                 );
 
                 // Prevent another answer
@@ -119,16 +162,23 @@ public class QuizManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("GameManager is not assigned!");
+                    Debug.LogError(
+                        "GameManager is not assigned!"
+                    );
                 }
 
                 Debug.Log(
-                    "Wrong answer! -" + NegativePoints +
-                    " points. Wrong answers: " + wrongAnswers
+                    "Wrong answer! -" +
+                    NegativePoints +
+                    " points. Wrong answers: " +
+                    wrongAnswers
                 );
 
-                // Do not close the questionnaire
-                // Player can try again
+                // Do NOT close the questionnaire.
+                // Player can select another answer.
+
+                // The same button cannot be clicked again
+                // because it is now stored in clickedButtons.
             }
         }
         else
@@ -139,6 +189,7 @@ public class QuizManager : MonoBehaviour
             );
         }
     }
+
 
     private int CalculateCorrectScore()
     {
@@ -154,6 +205,7 @@ public class QuizManager : MonoBehaviour
         return points;
     }
 
+
     private void RemoveCurrentQuestion()
     {
         if (QnA == null || QnA.Count == 0)
@@ -164,17 +216,26 @@ public class QuizManager : MonoBehaviour
         // Remove the question that was just answered
         QnA.RemoveAt(currentQuestion);
 
-        Debug.Log("Question removed. Questions remaining: " + QnA.Count);
+        Debug.Log(
+            "Question removed. Questions remaining: " +
+            QnA.Count
+        );
 
         // If all questions have been used,
         // refill the pool with the original questions
         if (QnA.Count == 0)
         {
-            Debug.Log("All questions used. Resetting question pool.");
+            Debug.Log(
+                "All questions used. Resetting question pool."
+            );
 
-            QnA = new List<QuestionsAndAnswers>(originalQnA);
+            QnA =
+                new List<QuestionsAndAnswers>(
+                    originalQnA
+                );
         }
     }
+
 
     private IEnumerator CloseQuestionnaire()
     {
@@ -185,22 +246,30 @@ public class QuizManager : MonoBehaviour
         {
             questionair.SetActive(false);
 
-            Debug.Log("Questionnaire closed.");
+            Debug.Log(
+                "Questionnaire closed."
+            );
         }
         else
         {
-            Debug.LogError("Questionnaire is not assigned!");
+            Debug.LogError(
+                "Questionnaire is not assigned!"
+            );
         }
 
         // Prepare the next question
         GenerateQuestion();
     }
 
+
     private void SetAnswers()
     {
         if (QnA == null || QnA.Count == 0)
         {
-            Debug.LogError("QnA is empty!");
+            Debug.LogError(
+                "QnA is empty!"
+            );
+
             return;
         }
 
@@ -208,7 +277,11 @@ public class QuizManager : MonoBehaviour
         {
             if (options[i] == null)
             {
-                Debug.LogError("Option " + i + " is empty!");
+                Debug.LogError(
+                    "Option " + i +
+                    " is empty!"
+                );
+
                 continue;
             }
 
@@ -260,16 +333,25 @@ public class QuizManager : MonoBehaviour
 
             if (button != null)
             {
-                ColorBlock colors = button.colors;
+                ColorBlock colors =
+                    button.colors;
 
-                colors.selectedColor = Color.white;
+                colors.selectedColor =
+                    Color.white;
 
                 button.colors = colors;
+
+                // Make sure the button is interactable
+                button.interactable = true;
             }
 
             // If there aren't enough answers,
             // clear this button
-            if (i >= QnA[currentQuestion].Answers.Length)
+            if (
+                i >=
+                QnA[currentQuestion]
+                .Answers.Length
+            )
             {
                 answerText.text = "";
                 continue;
@@ -277,24 +359,35 @@ public class QuizManager : MonoBehaviour
 
             // Set answer text
             answerText.text =
-                QnA[currentQuestion].Answers[i];
+                QnA[currentQuestion]
+                .Answers[i];
 
             // Set correct answer
-            if (QnA[currentQuestion].CorrectAnswer == i + 1)
+            if (
+                QnA[currentQuestion]
+                .CorrectAnswer == i + 1
+            )
             {
                 answerScript.isCorrect = true;
             }
         }
 
+        // Clear the list of buttons clicked
+        // for the previous question
+        clickedButtons.Clear();
+
         // Allow a new answer
         answerSelected = false;
     }
+
 
     private void GenerateQuestion()
     {
         if (QnA == null || QnA.Count == 0)
         {
-            Debug.LogError("No questions available!");
+            Debug.LogError(
+                "No questions available!"
+            );
 
             return;
         }
@@ -304,13 +397,17 @@ public class QuizManager : MonoBehaviour
 
         // Pick a random question
         currentQuestion =
-            Random.Range(0, QnA.Count);
+            Random.Range(
+                0,
+                QnA.Count
+            );
 
         // Display question
         if (QuestionTxt != null)
         {
             QuestionTxt.text =
-                QnA[currentQuestion].Question;
+                QnA[currentQuestion]
+                .Question;
         }
 
         // Set answers
@@ -322,3 +419,4 @@ public class QuizManager : MonoBehaviour
         );
     }
 }
+
