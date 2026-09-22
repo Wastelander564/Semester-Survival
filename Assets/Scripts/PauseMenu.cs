@@ -11,12 +11,28 @@ public class PauseMenu : MonoBehaviour
 
     private bool isPaused = false;
 
+
+    private void Start()
+    {
+        if (playerController == null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player != null)
+            {
+                playerController = player.GetComponent<DemoCollegeStudentController>();
+            }
+            else
+            {
+                Debug.LogWarning("PauseMenu: no object with tag Player found.");
+            }
+        }
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // No pausing when the level is already finished
-            if (levelCompletePanel.activeSelf)
+            if (levelCompletePanel != null && levelCompletePanel.activeSelf)
             {
                 return;
             }
