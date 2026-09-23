@@ -20,8 +20,35 @@ MonoBehaviour:
     rid: 9083513385971875921
   m_ActivePlatformGuid: 
   m_AdditionalPlatformBuildSettings: []
-  m_OverrideGlobalSceneList: 0
-  m_Scenes: []
+  m_OverrideGlobalSceneList: 1
+  m_Scenes:
+  - m_enabled: 1
+    m_path: Assets/Scenes/Menu.unity
+    m_guid: 9273e01f36eb24041af5a13b1f68c44f
+  - m_enabled: 1
+    m_path: Assets/Scenes/LevelFlow/Week 1.unity
+    m_guid: cf55c1de6ece6654790db3b015705309
+  - m_enabled: 1
+    m_path: Assets/Scenes/LevelFlow/Week 2.unity
+    m_guid: 3cc25a466be1a2842afe5a574f90e7a5
+  - m_enabled: 1
+    m_path: Assets/Scenes/LevelFlow/Week 3.unity
+    m_guid: db99cf3a1b2003a4ba6a2c08ce2de206
+  - m_enabled: 1
+    m_path: Assets/Scenes/LevelFlow/Week 4.unity
+    m_guid: a05504df22da40c41b0d9e284c0dfd48
+  - m_enabled: 1
+    m_path: Assets/Scenes/LevelFlow/Week 5.unity
+    m_guid: e35ba3953e2026c4aa8476376f385881
+  - m_enabled: 1
+    m_path: Assets/Scenes/Tutorial.unity
+    m_guid: ffa32154cad9bc848b998782afa5415e
+  - m_enabled: 1
+    m_path: Assets/Scenes/WeekUpdateScene.unity
+    m_guid: 70931095e1cc08f45a03ea8324316b6f
+  - m_enabled: 1
+    m_path: Assets/Scenes/EndScreen.unity
+    m_guid: 7377be5bc70920d48ae548e28b970899
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
