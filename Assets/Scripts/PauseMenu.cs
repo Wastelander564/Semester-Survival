@@ -73,8 +73,22 @@ public class PauseMenu : MonoBehaviour
 
     public void BackToMenu()
     {
-        // Always unfreeze time before loading a scene
         Time.timeScale = 1f;
+
+        DestroyPersistentObjects();
+
         SceneManager.LoadScene(menuSceneName);
+    }
+
+    private void DestroyPersistentObjects()
+    {
+        GameObject temp = new GameObject("Temp");
+        DontDestroyOnLoad(temp);
+        Scene persistentScene = temp.scene;
+
+        foreach (GameObject root in persistentScene.GetRootGameObjects())
+        {
+            Destroy(root);
+        }
     }
 }
