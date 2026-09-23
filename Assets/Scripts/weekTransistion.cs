@@ -73,10 +73,19 @@ public class WeekTransition : MonoBehaviour
     private IEnumerator PlayWeekTransition()
     {
         // Show current week
+        if(gameManager.Week > gameManager.endWeek)
+        {
+            weekText.text = "Einde van Semester";
+            weekText.fontSize = 225; // Increase font size for emphasis
+        }
+        else
+        {
+            weekText.text = "Week " + gameManager.Week;
+        }
         weekText.text = "Week " + gameManager.Week;
 
         // Show current score
-        ScoreText.text = "Score: " + gameManager.playerScore;
+        ScoreText.text = "Studiepunten: " + gameManager.playerScore;
 
         WinText.text = "Je hebt " + gameManager.winScore + " nodig om te winnen.";
 
